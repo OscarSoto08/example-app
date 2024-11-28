@@ -9,9 +9,13 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PostController extends Controller
 {
+/**
+ * Summary of indexxx
+ * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+ */
 public function index(){
     // $posts = Post::all();
-    $posts = Post::paginate(1);
+    $posts = Post::paginate(5);
     return view('post.index', compact('posts'));
     //? Para enviar datos del controlador a las vistas con el método compact
 }
@@ -52,12 +56,16 @@ public function update(UpdatePost $request, Post $post){
     // // $post->category = $request->category;
     // // $post->content = $request->content;
     // // $post->save();
-    $post->update($request->all());
+    $post->update(attributes: $request->all());
     return redirect() -> route('post.show', $post);
 }
 
 public function destroy(Post $post){
     $post->delete();
     return redirect() -> route('post.index');
+}
+
+public function publish(){
+    return 'interfaz para publicar';
 }
 }

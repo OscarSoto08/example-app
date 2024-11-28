@@ -13,7 +13,6 @@
     <a class="btn btn-warning mb-3" href="{{route('post.edit', $post)}}">Editar post</a>
 <form action="{{route('post.destroy', $post)}}" method="post">
     @csrf
-    @method('delete')
     <button type="submit" class="btn btn-danger">Borrar</button>
 </form>
 </div>

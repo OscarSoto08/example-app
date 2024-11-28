@@ -31,8 +31,11 @@ Route::get('/views/{nombre?}', function($nombre=null){
 Route::resource('post', PostController::class) -> parameters(['post'=>'post']) -> names('post');
 
 //* En lugar de tomar en cuenta el nombre que se pasa por parametro al metodo resource de la clase route, se tiene en cuenta el parametro de names()
-//* El metodo parameters hace lo mismo pero con los controladores
+//* El metodo parameters hace lo mismo pero con los controladores, personaliza el nombre del parametro que se envia a través de las rutas
 
+/*
+? Importante: Route::resource solo se encarga de manejar los metodos index, create, destroy, store, show, edit, update, si hay un metodo adicional tocaría especificar su ruta por separado, ejemplo: /post/publish del metodo del controlador publish
+*/
 
 Route::get('/prueba', function(){
 //* Esta es la forma 1 para crear datos
@@ -65,9 +68,9 @@ Route::get('/prueba', function(){
     //         ->get();
     // return $post;
 //* Listar todos los post
-            //? En caso de hacer una consulta siempre debo usar el metodo get()
-            //? En caso de querer un unico registro el metodo first()
-            //? En caso de una cantidad definida de registros el metodo take(n)
+//? En caso de hacer una consulta siempre debo usar el metodo get()
+//? En caso de querer un unico registro el metodo first()
+//? En caso de una cantidad definida de registros el metodo take(n)
     // $post = Post::orderBy('id','desc')
     //         ->get();
     // return $post;
